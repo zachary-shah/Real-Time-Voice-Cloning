@@ -1,6 +1,6 @@
-from synthesizer.preprocess import preprocess_dataset
-from synthesizer.hparams import hparams
-from utils.argutils import print_args
+from voicecloner.synthesizer.preprocess import preprocess_dataset
+from voicecloner.synthesizer.hparams import hparams
+from voicecloner.utils.argutils import print_args
 from pathlib import Path
 import argparse
 

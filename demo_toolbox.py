@@ -3,8 +3,8 @@ import os
 from pathlib import Path
 
 from toolbox import Toolbox
-from utils.argutils import print_args
-from utils.default_models import ensure_default_models
+from voicecloner.utils.argutils import print_args
+from voicecloner.utils.default_models import ensure_default_models
 
 
 if __name__ == '__main__':

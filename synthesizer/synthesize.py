@@ -7,11 +7,11 @@ import torch
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from synthesizer.hparams import hparams_debug_string
-from synthesizer.models.tacotron import Tacotron
-from synthesizer.synthesizer_dataset import SynthesizerDataset, collate_synthesizer
-from synthesizer.utils import data_parallel_workaround
-from synthesizer.utils.symbols import symbols
+from voicecloner.synthesizer.hparams import hparams_debug_string
+from voicecloner.synthesizer.models.tacotron import Tacotron
+from voicecloner.synthesizer.synthesizer_dataset import SynthesizerDataset, collate_synthesizer
+from voicecloner.synthesizer.utils import data_parallel_workaround
+from voicecloner.synthesizer.utils.symbols import symbols
 
 
 def run_synthesis(in_dir: Path, out_dir: Path, syn_model_fpath: Path, hparams):

@@ -2,9 +2,9 @@ import argparse
 import os
 from pathlib import Path
 
-from synthesizer.hparams import hparams
-from synthesizer.synthesize import run_synthesis
-from utils.argutils import print_args
+from voicecloner.synthesizer.hparams import hparams
+from voicecloner.synthesizer.synthesize import run_synthesis
+from voicecloner.utils.argutils import print_args
 
 
 

@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from utils.display import *
-from utils.dsp import *
+from voicecloner.utils.display import *
+from voicecloner.utils.dsp import *
 
 
 class WaveRNN(nn.Module) :

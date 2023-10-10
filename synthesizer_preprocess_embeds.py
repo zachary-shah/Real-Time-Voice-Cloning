@@ -1,5 +1,5 @@
-from synthesizer.preprocess import create_embeddings
-from utils.argutils import print_args
+from voicecloner.synthesizer.preprocess import create_embeddings
+from voicecloner.utils.argutils import print_args
 from pathlib import Path
 import argparse
 
