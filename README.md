@@ -1,4 +1,11 @@
-# Real-Time Voice Cloning
+# EE269 Branch README
+This repo is a branch from the original Real-Time Voice Cloning Repo described below.
+
+Added:
+- Simple interface for voice cloning through VoiceClone() object
+- Sample data for inference
+
+# Original Real-Time Voice Cloning README
 This repository is an implementation of [Transfer Learning from Speaker Verification to
 Multispeaker Text-To-Speech Synthesis](https://arxiv.org/pdf/1806.04558.pdf) (SV2TTS) with a vocoder that works in real-time. This was my [master's thesis](https://matheo.uliege.be/handle/2268.2/6801).
 
@@ -7,7 +14,6 @@ SV2TTS is a deep learning framework in three stages. In the first stage, one cre
 **Video demonstration** (click the picture):
 
 [![Toolbox demo](https://i.imgur.com/8lFUlgz.png)](https://www.youtube.com/watch?v=-O_hYhToKoA)
-
 
 
 ### Papers implemented  
