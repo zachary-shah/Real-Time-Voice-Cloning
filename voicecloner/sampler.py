@@ -38,7 +38,7 @@ class VoiceCloner:
 
         if verbose: print("Loading models...\n")
 
-        if torch.cuda.is_available():
+        if torch.cuda.is_available() and not cpu:
             device_id = torch.cuda.current_device()
             gpu_properties = torch.cuda.get_device_properties(device_id)
             ## Print some environment information (for debugging purposes)
@@ -50,17 +50,21 @@ class VoiceCloner:
                 gpu_properties.major,
                 gpu_properties.minor,
                 gpu_properties.total_memory / 1e9))
+            self.device_id = device_id
+            self.device = torch.device(device_id)
         else:
             if verbose: print("Using CPU for inference.\n")
+            self.device_id = None
+            self.device = torch.device('cpu')
 
         ## Load the models one by one.
         if verbose: print("Preparing the encoder, the synthesizer and the vocoder...")
         ensure_default_models(save_model_root)
-        encoder.load_model(enc_model_fpath)
-        synthesizer = Synthesizer(syn_model_fpath)
-        vocoder.load_model(voc_model_fpath)
+        encoder.load_model(enc_model_fpath, device=self.device)
+        synthesizer = Synthesizer(syn_model_fpath, device=self.device)
+        vocoder.load_model(voc_model_fpath, device=self.device)
 
-        self.device_id = device_id
+        
         self.synthesizer = synthesizer
         self.seed = seed
         self.voc_model_fpath = voc_model_fpath
@@ -101,7 +105,7 @@ class VoiceCloner:
         # reset synthesizer
         if self.seed is not None:
             torch.manual_seed(self.seed)
-            self.synthesizer = Synthesizer(self.syn_model_fpath)
+            self.synthesizer = Synthesizer(self.syn_model_fpath, device=self.device)
             
         # The synthesizer works in batch, so you need to put your data in a list or numpy array
         texts = [text]
@@ -120,7 +124,7 @@ class VoiceCloner:
         # If seed is specified, reset torch seed and reload vocoder
         if self.seed is not None:
             torch.manual_seed(self.seed)
-            vocoder.load_model(self.voc_model_fpath)
+            vocoder.load_model(self.voc_model_fpath, device=self.device)
 
         # Synthesizing the waveform is fairly straightforward. Remember that the longer the
         # spectrogram, the more time-efficient the vocoder.
