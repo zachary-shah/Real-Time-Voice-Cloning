@@ -2,7 +2,6 @@ from voicecloner.vocoder.models.fatchord_version import WaveRNN
 from voicecloner.vocoder import hparams as hp
 import torch
 
-
 _model = None   # type: WaveRNN
 
 def load_model(weights_fpath, verbose=True, device=None):
