@@ -5,7 +5,7 @@ import torch
 
 _model = None   # type: WaveRNN
 
-def load_model(weights_fpath, verbose=True):
+def load_model(weights_fpath, verbose=True, device=None):
     global _model, _device
     
     if verbose:
@@ -25,11 +25,19 @@ def load_model(weights_fpath, verbose=True):
         mode=hp.voc_mode
     )
 
-    if torch.cuda.is_available():
-        _model = _model.cuda()
-        _device = torch.device('cuda')
+    if device is not None:
+        if isinstance(device, str):
+            _device = torch.device(device)
+        else:
+            _device = device
     else:
-        _device = torch.device('cpu')
+        if torch.cuda.is_available():
+            _device = torch.device('cuda')
+        else:
+            _device = torch.device('cpu')
+
+    if _device.type is not 'cpu':
+        _model = _model.cuda()
     
     if verbose:
         print("Loading model weights at %s" % weights_fpath)
